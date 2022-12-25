@@ -67,7 +67,7 @@ def recurse_bfs(b,total,counts):
     alln = []
     allp = [(total,counts)]
 
-    for round in range(1,32+1):
+    for round in range(1,33):
         #allp = alls[round]
         alln = set()
 
@@ -146,6 +146,7 @@ def recurse_bfs(b,total,counts):
                 for yy in ax:
                     #print(yy,xx)
                     if(better(yy,xx)==1):
+                        #ax.remove(xx)
                         flag=0
                         break
                 if(flag):
@@ -176,11 +177,11 @@ def bfs_tryit(b):
     return finalg
 
 ans2 = 1
-for i in range(1,3+1):
+for i in range(3):
     b=a[i]
     ans = {}
     finalg = bfs_tryit(b)
-    print(f"{b}\t {i},{finalg}")
+    print(f"{b}\t {i+1},{finalg}")
     ans2 = ans2*(finalg)
 
 print(ans2)
