@@ -1,4 +1,3 @@
-#Day 1
 from collections import Counter
 from aocd import get_data
 from aocd import submit
@@ -7,9 +6,7 @@ from functools import cmp_to_key
 from functools import cache
 import re
 
-lines = get_data(year=2024, day=4)
-lines = lines.split("\n")
-#'''
+dirs = [(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,0),(1,1),(1,-1)]
 
 #[1,2,3,4,5,6] becomes [(1,2),(3,4),(5,6)]
 def group(l, n):
@@ -22,11 +19,18 @@ def neighbours(xy):
 #===============================================
 
 #'''
+lines = get_data(year=2024, day=4)
+lines = lines.split("\n")
+#'''
+
+#'''
 with open('testcases.txt') as f:
     lines = f.readlines()
 
 lines = [x.replace('\n'," ") for x in lines]
 #'''
+
+#=================================================
 
 a = []
 for line in lines:
