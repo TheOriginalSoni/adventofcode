@@ -41,18 +41,13 @@ for line in lines:
     b = [int(x) for x in line.split()]
     a = b
 
-#print(a)
-
 all_a = []
 all_a.append({})
 for x in a:
     all_a[0][x]=1
 
-m = {}
-
 N=75
 for i in range(1,N+1):
-    #print(i)
     preva = all_a[i-1]
     curra = {}
     for x in preva:
@@ -76,7 +71,6 @@ for i in range(1,N+1):
                 curra[x1]=0
             curra[x1]=curra[x1]+preva[x]
     all_a.append(curra)
-
 
 ans1 = sum(all_a[25][x] for x in all_a[25])
 print(ans1)
