@@ -73,7 +73,6 @@ def permute(arr, mindig, n, div):
                     ans=currnum
     return ans
 
-'''
 ans1 = 0
 for x in a:
     dig = x[0]
@@ -89,13 +88,8 @@ for x in a:
             ans1 = ans1+currans
             ansnotfound=0
         n+=1
-        #print("-",x,n)
-        #for i in range(minx,n):
-        #    arr = [dig]*i
-        #    #for j in range(
 
 print(ans1)
-'''
 
 ans2 = 0
 for x in a:
