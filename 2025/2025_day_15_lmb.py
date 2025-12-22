@@ -25,7 +25,7 @@ def dist(a1,a2):
 # Solving AoL from LMB!
 # https://lovemathboy.github.io/day15.html
 
-with open('2025/testcases.txt') as f:
+with open('2025/testcases2.txt') as f:
     lines = f.readlines()
 lines = [x.replace('\n'," ").strip() for x in lines]
 lines=[x.replace(":","") for x in lines]
@@ -38,6 +38,7 @@ for line in lines:
         minx = min(minx,line[1])
     #print(line)
 
+'''
 i=1
 ans1=0
 lowerh = []
@@ -67,8 +68,12 @@ for line in lines:
 
         ans1=ans1+(i*elem)
         i=i+1
-#'''
+
 print(ans1)
+        
+#'''
+
+# PART 2
 
 i=1
 ans2=0
@@ -147,11 +152,60 @@ for line in lines:
             heapq.heappop(upperh)
         else:
             upperh[0] = (upperh[0][0],upperh[0][1]-1)
-            upperhn -= 1
-        
+        upperhn -= 1
         ans2=ans2+(i*elem)
         i=i+1
         heap_balance()
-        print(i,lowerhn,upperhn)
+        #print(i,lowerhn,upperhn)
 
 print(ans2)
+
+# PART 2, SIMPLIFIED
+# Dont need to balance both heaps!
+i=1
+ans22=0
+lowerh = []
+lowerhn = 0
+upperh = []
+upperhn = 0
+
+def heap_balance2():
+    global lowerh
+    global lowerhn
+    global upperh
+    global upperhn
+        
+    while(upperhn>lowerhn and upperhn > 0 and lowerhn >0 and upperhn-upperh[0][1]>lowerhn+lowerh[0][1]):
+        x = heapq.heappop(upperh)
+        heapq.heappush(lowerh,(-1*x[0],x[1]))
+        upperhn -= x[1]
+        lowerhn += x[1]
+    while(lowerhn>upperhn):
+        x = heapq.heappop(lowerh)
+        heapq.heappush(upperh,(-1*x[0],x[1]))
+        upperhn += x[1]
+        lowerhn -= x[1]
+
+for line in lines:
+    if(line[0]=="receive"):
+        curr = line[1]
+        if(len(upperh)==0 or curr>upperh[0][0]):
+            heapq.heappush(upperh,(curr,curr))
+            upperhn += curr
+        else:
+            heapq.heappush(lowerh,(-1*curr,curr))
+            lowerhn += curr
+        heap_balance2()
+    else:
+        x = upperh[0]
+        elem = x[0]
+        if(x[1]==1):
+            heapq.heappop(upperh)
+        else:
+            upperh[0] = (upperh[0][0],upperh[0][1]-1)
+        upperhn -= 1
+        ans22=ans22+(i*elem)
+        i=i+1
+        heap_balance2()
+
+print(ans22)
